@@ -256,7 +256,7 @@
         </ul>
       </div>
 
-      <form class="contact-form" onsubmit="handleSubmit(event)">
+      <form class="contact-form" id="contact-form" action="https://formspree.io/f/xvzdvlrj" method="POST">
         <div class="form-row">
           <div class="form-group">
             <label for="name" data-en="Your Name" data-ko="이름">Your Name</label>
@@ -268,22 +268,11 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="subject" data-en="I'm interested in..." data-ko="관심 서비스">I'm interested in...</label>
-          <select id="subject" name="subject">
-            <option value="" data-en="Select a service" data-ko="서비스 선택">Select a service</option>
-            <option value="individual" data-en="Individual Counseling" data-ko="개인 상담">Individual Counseling</option>
-            <option value="group" data-en="Group Workshop" data-ko="그룹 워크샵">Group Workshop</option>
-            <option value="logotherapy" data-en="Logotherapy Session" data-ko="로고테라피 세션">Logotherapy Session</option>
-            <option value="crisis" data-en="Crisis Support" data-ko="위기 지원">Crisis Support</option>
-            <option value="curriculum" data-en="Curriculum Design" data-ko="커리큘럼 설계">Curriculum Design</option>
-            <option value="other" data-en="Other" data-ko="기타">Other</option>
-          </select>
-        </div>
-        <div class="form-group">
           <label for="message" data-en="Your Message" data-ko="메시지">Your Message</label>
           <textarea id="message" name="message" required placeholder="Share what's on your mind…"></textarea>
         </div>
         <button type="submit" class="btn-submit" data-en="Send Message" data-ko="메시지 보내기">Send Message</button>
+        <p class="form-success" id="form-success" data-en="Your message has been sent. I'll be in touch soon." data-ko="메시지가 전송되었습니다. 곧 연락드리겠습니다."></p>
       </form>
     </div>
   </section>
@@ -354,32 +343,43 @@
       });
     }
 
-    // Form handler — opens mail client with form contents
-    function handleSubmit(e) {
+    // Formspree AJAX submission
+    const contactForm = document.getElementById('contact-form');
+    const formSuccess = document.getElementById('form-success');
+
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const form = e.target;
-      const name    = form.name.value.trim();
-      const email   = form.email.value.trim();
-      const subject = form.subject.value || 'General Inquiry';
-      const message = form.message.value.trim();
+      const btn = contactForm.querySelector('.btn-submit');
+      btn.disabled = true;
+      btn.textContent = currentLang === 'ko' ? '전송 중…' : 'Sending…';
 
-      const body = encodeURIComponent(
-        `Name: ${name}\nEmail: ${email}\nService: ${subject}\n\n${message}`
-      );
-      const subjectLine = encodeURIComponent(`[Portfolio Inquiry] ${subject} — ${name}`);
+      try {
+        const res = await fetch(contactForm.action, {
+          method: 'POST',
+          body: new FormData(contactForm),
+          headers: { Accept: 'application/json' }
+        });
 
-      window.location.href = `mailto:hyunhee1004@gmail.com?subject=${subjectLine}&body=${body}`;
-
-      const btn = form.querySelector('.btn-submit');
-      const original = btn.textContent;
-      btn.textContent = currentLang === 'ko' ? '이메일 앱이 열립니다 ✓' : 'Opening Mail App ✓';
-      btn.style.background = 'var(--sage)';
-      setTimeout(() => {
-        btn.textContent = original;
-        btn.style.background = '';
-        form.reset();
-      }, 3000);
-    }
+        if (res.ok) {
+          contactForm.reset();
+          btn.textContent = currentLang === 'ko' ? '전송 완료 ✓' : 'Sent ✓';
+          btn.style.background = 'var(--sage)';
+          formSuccess.style.display = 'block';
+          setTimeout(() => {
+            btn.textContent = currentLang === 'ko' ? '메시지 보내기' : 'Send Message';
+            btn.style.background = '';
+            btn.disabled = false;
+            formSuccess.style.display = 'none';
+          }, 4000);
+        } else {
+          throw new Error();
+        }
+      } catch {
+        btn.textContent = currentLang === 'ko' ? '오류 발생 — 다시 시도해주세요' : 'Error — please try again';
+        btn.style.background = '#a05050';
+        btn.disabled = false;
+      }
+    });
 
     // Fade-in on scroll
     const observer = new IntersectionObserver((entries) => {

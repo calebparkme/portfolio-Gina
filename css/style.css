@@ -659,6 +659,19 @@ section {
   background: var(--mid);
 }
 
+.btn-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.form-success {
+  display: none;
+  font-size: 0.85rem;
+  color: var(--sage);
+  padding: 12px 0 0;
+  letter-spacing: 0.03em;
+}
+
 /* ─── SNS ─── */
 #sns {
   background: var(--warm-white);
