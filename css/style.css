@@ -202,6 +202,55 @@ nav.scrolled {
   color: var(--warm-white);
 }
 
+.ongo-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 32px;
+  padding: 16px 24px;
+  background: var(--accent);
+  border: none;
+  text-decoration: none;
+  transition: all 0.3s;
+  align-self: flex-start;
+  box-shadow: 0 4px 20px rgba(122, 158, 130, 0.35);
+}
+
+.ongo-btn:hover {
+  background: var(--sage);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(122, 158, 130, 0.45);
+}
+
+.ongo-btn:hover svg {
+  transform: translateX(4px);
+}
+
+.ongo-btn-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.ongo-btn-title {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: white;
+  display: block;
+}
+
+.ongo-btn svg {
+  width: 18px;
+  height: 18px;
+  color: rgba(255, 255, 255, 0.85);
+  flex-shrink: 0;
+  transition: transform 0.25s;
+}
+
 .hero-image {
   position: relative;
   overflow: hidden;

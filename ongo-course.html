@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>온고 북 2.0 강의 과정 — 일상 속 비폭력의 여정</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --sage: #7a9e7e;
+    --sage-light: #a8c5ac;
+    --sage-pale: #eef4ef;
+    --warm-white: #faf9f6;
+    --stone: #e8e3da;
+    --linen: #f2ede4;
+    --charcoal: #2c2c2a;
+    --ink: #3d3d39;
+    --muted: #8a8880;
+    --gold: #b8965a;
+    --gold-light: #d4b07a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--warm-white);
+    color: var(--charcoal);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 20px 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(250,249,246,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(122,158,126,0.15);
+    transition: all 0.3s ease;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; font-weight: 400; font-style: italic;
+    color: var(--sage); letter-spacing: 0.05em;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-size: 0.78rem; font-weight: 400; letter-spacing: 0.12em;
+    color: var(--ink); text-decoration: none;
+    text-transform: uppercase; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--sage); }
+  .nav-cta {
+    background: var(--sage); color: white !important;
+    padding: 8px 20px; border-radius: 2px;
+  }
+  .nav-cta:hover { background: #6a8e6e !important; color: white !important; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 60px 80px 80px;
+    position: relative; z-index: 2;
+  }
+  .hero-eyebrow {
+    font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--sage); margin-bottom: 24px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block; width: 32px; height: 1px; background: var(--sage);
+  }
+  .hero-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(2.4rem, 4vw, 3.6rem);
+    font-weight: 300; line-height: 1.25;
+    color: var(--charcoal); margin-bottom: 12px;
+  }
+  .hero-title em {
+    font-style: italic; color: var(--sage);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 4.4rem);
+  }
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 300; font-style: italic;
+    color: var(--muted); margin-bottom: 36px; line-height: 1.5;
+  }
+  .hero-desc {
+    font-size: 0.92rem; color: var(--ink); max-width: 420px;
+    margin-bottom: 48px; line-height: 1.85;
+    border-left: 2px solid var(--sage-light); padding-left: 20px;
+  }
+  .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--sage); color: white;
+    padding: 14px 36px; border-radius: 2px;
+    font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase;
+    text-decoration: none; transition: all 0.25s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: #6a8e6e; transform: translateY(-1px); }
+  .btn-secondary {
+    color: var(--sage); font-size: 0.82rem;
+    letter-spacing: 0.1em; text-decoration: none; text-transform: uppercase;
+    display: flex; align-items: center; gap: 8px; transition: gap 0.2s;
+  }
+  .btn-secondary:hover { gap: 14px; }
+  .hero-right {
+    position: relative; overflow: hidden;
+    background: var(--linen);
+  }
+  .hero-visual {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    padding: 60px;
+  }
+  .hero-card {
+    background: white; border-radius: 4px;
+    padding: 52px 44px; width: 100%; max-width: 380px;
+    box-shadow: 0 24px 80px rgba(44,44,42,0.1);
+    position: relative;
+  }
+  .hero-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--sage), var(--gold));
+  }
+  .card-badge {
+    display: inline-block; font-size: 0.68rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold);
+    background: rgba(184,150,90,0.1); padding: 5px 12px;
+    border-radius: 2px; margin-bottom: 28px;
+  }
+  .card-stat { margin-bottom: 20px; }
+  .card-stat-label {
+    font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--muted); display: block; margin-bottom: 4px;
+  }
+  .card-stat-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem; font-weight: 400; color: var(--charcoal);
+  }
+  .card-divider { height: 1px; background: var(--stone); margin: 24px 0; }
+  .card-features { list-style: none; }
+  .card-features li {
+    font-size: 0.83rem; color: var(--ink);
+    padding: 7px 0; display: flex; align-items: center; gap: 10px;
+  }
+  .card-features li::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--sage-light); flex-shrink: 0;
+  }
+  .hero-bg-text {
+    position: absolute; bottom: -20px; right: -20px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12rem; font-weight: 300; color: rgba(122,158,126,0.06);
+    line-height: 1; user-select: none; pointer-events: none;
+    white-space: nowrap;
+  }
+
+  /* ─── DIVIDER ─── */
+  .section-divider {
+    height: 1px; background: var(--stone);
+    margin: 0 80px;
+  }
+
+  /* ─── PHILOSOPHY ─── */
+  .philosophy {
+    padding: 120px 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .section-label {
+    font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--sage); align-self: start; margin-bottom: 16px;
+  }
+  .philosophy-content {}
+  .section-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 300;
+    line-height: 1.35; margin-bottom: 28px; color: var(--charcoal);
+  }
+  .section-title em {
+    font-style: italic; color: var(--sage);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2em;
+  }
+  .section-body {
+    font-size: 0.93rem; color: var(--ink);
+    line-height: 1.9; max-width: 640px;
+    margin-bottom: 20px;
+  }
+  .quote-block {
+    border-left: 2px solid var(--sage);
+    padding: 20px 28px; margin: 40px 0;
+    background: var(--sage-pale); border-radius: 0 4px 4px 0;
+  }
+  .quote-block p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem; font-style: italic; font-weight: 300;
+    color: var(--charcoal); line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  .quote-attr { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.05em; }
+
+  /* ─── VALUES ─── */
+  .values {
+    padding: 80px;
+    background: var(--charcoal);
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    position: relative; overflow: hidden;
+  }
+  .values::before {
+    content: 'NVC'; position: absolute;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22rem; font-weight: 300; color: rgba(255,255,255,0.03);
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    pointer-events: none; letter-spacing: 0.2em;
+  }
+  .value-item {
+    padding: 60px 48px;
+    background: var(--charcoal);
+    position: relative; text-align: center;
+  }
+  .value-item + .value-item::before {
+    content: ''; position: absolute; left: 0; top: 20%; bottom: 20%;
+    width: 1px; background: rgba(255,255,255,0.1);
+  }
+  .value-icon {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem; font-style: italic; font-weight: 300;
+    color: var(--sage-light); margin-bottom: 20px; display: block;
+  }
+  .value-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.25rem; font-weight: 400; color: white;
+    margin-bottom: 14px; letter-spacing: 0.05em;
+  }
+  .value-desc { font-size: 0.83rem; color: rgba(255,255,255,0.55); line-height: 1.8; }
+
+  /* ─── CURRICULUM ─── */
+  .curriculum { padding: 120px 80px; }
+  .curriculum-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 64px;
+  }
+  .curriculum-header .section-title { margin-bottom: 0; }
+  .curriculum-note {
+    font-size: 0.8rem; color: var(--muted);
+    max-width: 280px; text-align: right; line-height: 1.6;
+  }
+  .weeks-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
+    margin-bottom: 60px;
+  }
+  .week-card {
+    background: var(--linen); padding: 32px 28px;
+    position: relative; cursor: default;
+    transition: background 0.25s, transform 0.25s;
+    border-bottom: 2px solid transparent;
+  }
+  .week-card:hover {
+    background: white;
+    transform: translateY(-3px);
+    border-bottom-color: var(--sage);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    z-index: 1;
+  }
+  .week-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem; font-weight: 300; color: var(--stone);
+    line-height: 1; margin-bottom: 12px; display: block;
+  }
+  .week-theme {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 0.95rem; font-weight: 400; color: var(--charcoal);
+    margin-bottom: 8px;
+  }
+  .week-topics {
+    font-size: 0.77rem; color: var(--muted); line-height: 1.7;
+  }
+  .week-card.highlight { background: var(--sage-pale); }
+  .week-card.highlight .week-num { color: rgba(122,158,126,0.3); }
+
+  /* ─── STRUCTURE ─── */
+  .structure { padding: 80px; background: var(--linen); }
+  .structure-inner {
+    max-width: 900px; margin: 0 auto;
+  }
+  .structure-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.6rem; font-weight: 300; text-align: center;
+    margin-bottom: 56px; color: var(--charcoal);
+  }
+  .formats {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .format-card {
+    background: white; padding: 40px 32px; border-radius: 4px;
+    text-align: center; position: relative; overflow: hidden;
+    transition: box-shadow 0.25s;
+  }
+  .format-card:hover { box-shadow: 0 16px 48px rgba(0,0,0,0.08); }
+  .format-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: var(--sage-light); transform: scaleX(0); transition: transform 0.25s;
+  }
+  .format-card:hover::after { transform: scaleX(1); }
+  .format-emoji { font-size: 2rem; margin-bottom: 16px; display: block; }
+  .format-name {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.05rem; margin-bottom: 10px; color: var(--charcoal);
+  }
+  .format-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.75; }
+
+  /* ─── TARGET AUDIENCE ─── */
+  .audience { padding: 120px 80px; }
+  .audience-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px 80px;
+    margin-top: 56px;
+  }
+  .audience-item {}
+  .audience-icon {
+    width: 40px; height: 2px; background: var(--sage);
+    margin-bottom: 20px;
+  }
+  .audience-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.1rem; font-weight: 400; margin-bottom: 12px;
+    color: var(--charcoal);
+  }
+  .audience-desc { font-size: 0.87rem; color: var(--ink); line-height: 1.85; }
+
+  /* ─── TESTIMONIALS ─── */
+  .testimonials { padding: 100px 80px; background: var(--sage-pale); }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+  .testimonial {
+    background: white; padding: 36px 32px; border-radius: 4px;
+  }
+  .testimonial-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; font-style: italic; font-weight: 300;
+    color: var(--charcoal); line-height: 1.65; margin-bottom: 20px;
+  }
+  .testimonial-text::before { content: '"'; color: var(--sage-light); font-size: 1.4em; }
+  .testimonial-text::after { content: '"'; color: var(--sage-light); font-size: 1.4em; }
+  .testimonial-author { font-size: 0.78rem; color: var(--muted); }
+  .testimonial-author strong { display: block; color: var(--ink); font-weight: 500; margin-bottom: 2px; }
+
+  /* ─── INSTRUCTOR ─── */
+  .instructor { padding: 120px 80px; }
+  .instructor-inner {
+    display: grid; grid-template-columns: 1fr 1.6fr; gap: 80px; align-items: center;
+  }
+  .instructor-photo {
+    aspect-ratio: 3/4; background: var(--linen);
+    border-radius: 4px; overflow: hidden; position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .instructor-placeholder {
+    text-align: center;
+  }
+  .instructor-initials {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem; font-weight: 300; font-style: italic;
+    color: var(--sage-light); display: block; line-height: 1;
+  }
+  .instructor-photo-label {
+    font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--muted); margin-top: 12px;
+  }
+  .instructor-content {}
+  .instructor-role {
+    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--sage); margin-bottom: 16px;
+  }
+  .instructor-name {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 2rem; font-weight: 300; color: var(--charcoal);
+    margin-bottom: 24px;
+  }
+  .instructor-bio { font-size: 0.9rem; color: var(--ink); line-height: 1.9; margin-bottom: 16px; }
+  .credentials {
+    display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px;
+  }
+  .credential {
+    font-size: 0.73rem; letter-spacing: 0.08em;
+    color: var(--sage); border: 1px solid var(--sage-light);
+    padding: 5px 14px; border-radius: 2px; background: var(--sage-pale);
+  }
+
+  /* ─── CTA ─── */
+  .cta-section {
+    padding: 100px 80px;
+    background: var(--charcoal);
+    position: relative; overflow: hidden;
+  }
+  .cta-section::before {
+    content: '평화'; position: absolute;
+    font-family: 'Noto Serif KR', serif;
+    font-size: 24rem; font-weight: 300; color: rgba(255,255,255,0.03);
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    pointer-events: none; white-space: nowrap;
+  }
+  .cta-inner {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .cta-left { text-align: left; }
+  .cta-eyebrow {
+    font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--sage-light); margin-bottom: 24px;
+  }
+  .cta-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300;
+    color: white; margin-bottom: 20px; line-height: 1.3;
+  }
+  .cta-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; font-style: italic; font-weight: 300;
+    color: rgba(255,255,255,0.55); margin-bottom: 36px;
+  }
+  .cta-checklist {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .cta-checklist li {
+    font-size: 0.88rem; color: rgba(255,255,255,0.7);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .cta-checklist li::before {
+    content: '';
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--sage-light); flex-shrink: 0;
+  }
+  .cta-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-white {
+    background: white; color: var(--charcoal);
+    padding: 16px 44px; border-radius: 2px;
+    font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase;
+    text-decoration: none; transition: all 0.25s; display: inline-block;
+  }
+  .btn-white:hover { background: var(--sage-pale); transform: translateY(-1px); }
+  .btn-outline-white {
+    border: 1px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.75);
+    padding: 16px 44px; border-radius: 2px;
+    font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase;
+    text-decoration: none; transition: all 0.25s; display: inline-block;
+  }
+  .btn-outline-white:hover { border-color: rgba(255,255,255,0.6); color: white; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    padding: 48px 80px;
+    background: var(--warm-white);
+    border-top: 1px solid var(--stone);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem; font-style: italic; color: var(--sage);
+  }
+  .footer-copy { font-size: 0.75rem; color: var(--muted); }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a {
+    font-size: 0.73rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--sage); }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; } to { opacity: 1; }
+  }
+  .hero-eyebrow { animation: fadeIn 0.8s ease 0.2s both; }
+  .hero-title { animation: fadeUp 0.8s ease 0.35s both; }
+  .hero-subtitle { animation: fadeUp 0.8s ease 0.5s both; }
+  .hero-desc { animation: fadeUp 0.8s ease 0.6s both; }
+  .hero-actions { animation: fadeUp 0.8s ease 0.75s both; }
+  .hero-right { animation: fadeIn 1s ease 0.3s both; }
+
+  /* ─── SCROLL REVEAL ─── */
+  .reveal {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ─── ENROLL FORM ─── */
+  .enroll-form {
+    margin-top: 48px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 48px;
+    max-width: 600px;
+    width: 100%;
+    text-align: left;
+  }
+  .enroll-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .enroll-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .enroll-form-group:last-of-type { margin-bottom: 0; }
+  .enroll-form-group label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+  }
+  .enroll-form-group input,
+  .enroll-form-group textarea {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 12px 16px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 0.88rem;
+    color: white;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .enroll-form-group input::placeholder,
+  .enroll-form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
+  .enroll-form-group input:focus,
+  .enroll-form-group textarea:focus { border-color: var(--sage-light); }
+  .enroll-form-group textarea { min-height: 120px; resize: vertical; }
+  .enroll-submit {
+    margin-top: 24px;
+    width: 100%;
+    padding: 16px;
+    background: var(--sage);
+    color: white;
+    border: none;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.25s;
+  }
+  .enroll-submit:hover { background: var(--sage-light); color: var(--charcoal); }
+  .enroll-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+  .enroll-success {
+    display: none;
+    margin-top: 16px;
+    font-size: 0.85rem;
+    color: var(--sage-light);
+    text-align: center;
+  }
+  @media (max-width: 640px) {
+    .enroll-form { padding: 32px 24px; }
+    .enroll-form-row { grid-template-columns: 1fr; }
+  }
+
+  /* ─── LANG TOGGLE ─── */
+  .lang-btn {
+    background: none; border: none; cursor: pointer;
+    font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); font-family: 'Noto Sans KR', sans-serif;
+    padding: 4px 0; transition: color 0.2s;
+  }
+  .lang-btn.active, .lang-btn:hover { color: var(--sage); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1024px) {
+    nav { padding: 18px 36px; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 60px 36px; }
+    .hero-right { min-height: 400px; }
+    .philosophy, .curriculum, .audience, .instructor { padding: 80px 36px; }
+    .philosophy { grid-template-columns: 1fr; }
+    .section-label { writing-mode: horizontal-tb; transform: none; }
+    .values { padding: 60px 36px; grid-template-columns: 1fr; }
+    .value-item + .value-item::before { display: none; }
+    .weeks-grid { grid-template-columns: repeat(2, 1fr); }
+    .curriculum-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .curriculum-note { text-align: left; }
+    .formats { grid-template-columns: 1fr; }
+    .audience-grid { grid-template-columns: 1fr; gap: 40px; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .instructor-inner { grid-template-columns: 1fr; }
+    .instructor-photo { max-height: 300px; }
+    .structure, .testimonials, .cta-section { padding: 80px 36px; }
+    .cta-inner { grid-template-columns: 1fr; gap: 48px; }
+    footer { flex-direction: column; gap: 24px; text-align: center; padding: 36px; }
+  }
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .weeks-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">The Ongo Book 2.0</a>
+  <ul class="nav-links">
+    <li><a href="#philosophy" data-ko="철학" data-en="Philosophy">철학</a></li>
+    <li><a href="#curriculum" data-ko="커리큘럼" data-en="Curriculum">커리큘럼</a></li>
+    <li><a href="#structure" data-ko="과정안내" data-en="Course Info">과정안내</a></li>
+    <li><a href="#instructor" data-ko="강사소개" data-en="Instructor">강사소개</a></li>
+    <li><a href="#register" class="nav-cta" data-ko="수강신청" data-en="Enroll">수강신청</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <button class="lang-btn active" onclick="setLang('ko')">KO</button>
+    <span style="width:1px;height:12px;background:rgba(122,158,126,0.3);display:inline-block;"></span>
+    <button class="lang-btn" onclick="setLang('en')">EN</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow" data-ko="온고 북 2.0 기반 강의 과정" data-en="Based on The Ongo Book 2.0">온고 북 2.0 기반 강의 과정</div>
+    <h1 class="hero-title"
+        data-ko="일상 속에서<br><em>비폭력을</em><br>살아내다"
+        data-en="Living<br><em>Nonviolence</em><br>Every Day">
+      일상 속에서<br>
+      <em>비폭력을</em><br>
+      살아내다
+    </h1>
+    <p class="hero-subtitle" data-ko="평화 · 지혜 · 연민 — 그것이 되어가는 12주의 여정" data-en="Peace · Wisdom · Compassion — A 12-Week Journey of Becoming">평화 · 지혜 · 연민 — 그것이 되어가는 12주의 여정</p>
+    <p class="hero-desc" data-ko="마음챙김, 비폭력 대화(NVC), 그리고 공감의 실천을 일상의 언어로 녹여내는 체계적 과정입니다. 개인, 커플, 소그룹 모두가 함께할 수 있습니다." data-en="A structured journey bringing mindfulness, NVC, and compassionate practice into everyday life. Open to individuals, couples, and small groups.">
+      마음챙김, 비폭력 대화(NVC), 그리고 공감의 실천을 일상의 언어로 녹여내는 체계적 과정입니다. 개인, 커플, 소그룹 모두가 함께할 수 있습니다.
+    </p>
+    <div class="hero-actions">
+      <a href="#register" class="btn-primary" data-ko="수강신청 하기" data-en="Enroll Now">수강신청 하기</a>
+      <a href="#curriculum" class="btn-secondary" data-ko="커리큘럼 보기 →" data-en="View Curriculum →">커리큘럼 보기 →</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-visual">
+      <div class="hero-card">
+        <span class="card-badge" data-ko="12주 집중 과정" data-en="12-Week Intensive">12주 집중 과정</span>
+        <div class="card-stat">
+          <span class="card-stat-label" data-ko="총 수업 시간" data-en="Total Hours">총 수업 시간</span>
+          <span class="card-stat-value">24<small style="font-size:1.2rem;color:var(--muted)" data-ko="시간" data-en="hrs">시간</small></span>
+        </div>
+        <div class="card-divider"></div>
+        <ul class="card-features">
+          <li data-ko="매주 핵심 NVC 실천 습관 형성" data-en="Weekly NVC practice habit building">매주 핵심 NVC 실천 습관 형성</li>
+          <li data-ko="개인 · 파트너 · 그룹 실습 포함" data-en="Solo · partner · group practice included">개인 · 파트너 · 그룹 실습 포함</li>
+          <li data-ko="온라인 & 대면 병행 가능" data-en="Online & in-person options available">온라인 & 대면 병행 가능</li>
+          <li data-ko="가이드 명상 오디오 제공" data-en="Guided meditation audio provided">가이드 명상 오디오 제공</li>
+          <li data-ko="소그룹 서클 운영 지원" data-en="Small group circle support">소그룹 서클 운영 지원</li>
+        </ul>
+        <div class="card-divider"></div>
+        <div style="font-size:0.78rem;color:var(--muted);line-height:1.6;">
+          <strong style="color:var(--sage);display:block;margin-bottom:4px;" data-ko="다음 기수 모집 중" data-en="Now Enrolling">다음 기수 모집 중</strong>
+          <span data-ko="2025년 3월 시작 · 모집 인원 제한" data-en="Starting March 2025 · Limited seats">2025년 3월 시작 · 모집 인원 제한</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-bg-text">NVC</div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy" id="philosophy">
+  <div class="section-label" data-ko="철학" data-en="Philosophy">철학</div>
+  <div class="philosophy-content">
+    <h2 class="section-title reveal"
+        data-ko="워크숍 밖에서도<br><em>평화롭게 살 수 있을까?</em>"
+        data-en="Can we live peacefully<br><em>beyond the workshop?</em>">
+      워크숍 밖에서도<br>
+      <em>평화롭게 살 수 있을까?</em>
+    </h2>
+    <p class="section-body reveal reveal-delay-1"
+       data-ko="우리는 배움의 자리에서 마음이 열리고 연결되는 경험을 합니다. 하지만 일상으로 돌아오면 — 가정에서, 직장에서, 갈등의 한가운데서 — 그 감각이 사라지곤 합니다. 강의실 밖의 삶은 언제나 더 복잡하고, 더 불규칙하며, 더 인간적입니다."
+       data-en="In learning spaces, we experience hearts opening and connecting. But when we return to daily life — at home, at work, in the middle of conflict — that sense fades. Life outside the classroom is always more complex, more irregular, more human.">
+      우리는 배움의 자리에서 마음이 열리고 연결되는 경험을 합니다. 하지만 일상으로 돌아오면 — 가정에서, 직장에서, 갈등의 한가운데서 — 그 감각이 사라지곤 합니다. 강의실 밖의 삶은 언제나 더 복잡하고, 더 불규칙하며, 더 인간적입니다.
+    </p>
+    <p class="section-body reveal reveal-delay-2"
+       data-ko="이 과정은 바로 그 '일상의 지저분함' 속에서 NVC와 마음챙김을 실제로 살아내도록 설계되었습니다. 온고 북 2.0은 지속적인 영감(inspiration), 단계적 안내(guidance), 그리고 공동체의 지지(support)를 통해 당신이 평화와 연민의 습관을 몸에 새기도록 돕습니다."
+       data-en="This course is designed to actually live NVC and mindfulness within that 'everyday messiness'. The Ongo Book 2.0 helps you embody habits of peace and compassion through sustained inspiration, step-by-step guidance, and community support.">
+      이 과정은 바로 그 '일상의 지저분함' 속에서 NVC와 마음챙김을 실제로 살아내도록 설계되었습니다. 온고 북 2.0은 지속적인 영감(inspiration), 단계적 안내(guidance), 그리고 공동체의 지지(support)를 통해 당신이 평화와 연민의 습관을 몸에 새기도록 돕습니다.
+    </p>
+    <div class="quote-block reveal reveal-delay-3">
+      <p data-ko="이 책은 명상의 가치인 연민과 명료함을 평범한 일상 속에서 우선시하도록 권유합니다. 실천적인 조언으로 가득합니다." data-en="This book invites you to prioritize the meditative values of compassion and clarity in ordinary daily life. It is full of practical advice.">이 책은 명상의 가치인 연민과 명료함을 평범한 일상 속에서 우선시하도록 권유합니다. 실천적인 조언으로 가득합니다.</p>
+      <span class="quote-attr">— Sharon Salzberg, <em>Lovingkindness</em> <span data-ko="저자" data-en="author">저자</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values">
+  <div class="value-item reveal">
+    <span class="value-icon">Peace</span>
+    <h3 class="value-title" data-ko="평화" data-en="Peace">평화</h3>
+    <p class="value-desc" data-ko="내면의 고요함을 일상의 소용돌이 속에서도 유지하는 실천. 정지 속 명상, 언어 속 명상, 행동 속 명상을 통해 평화가 삶이 됩니다." data-en="The practice of maintaining inner stillness even in the chaos of daily life. Through stillness, speech, and action meditation, peace becomes a way of living.">내면의 고요함을 일상의 소용돌이 속에서도 유지하는 실천. 정지 속 명상, 언어 속 명상, 행동 속 명상을 통해 평화가 삶이 됩니다.</p>
+  </div>
+  <div class="value-item reveal reveal-delay-2">
+    <span class="value-icon">Wisdom</span>
+    <h3 class="value-title" data-ko="지혜" data-en="Wisdom">지혜</h3>
+    <p class="value-desc" data-ko="습관적 사고의 패턴에서 자유로워지고, 몸과 감정의 신호에 귀 기울이는 법을 배웁니다. 알아차림이 지혜의 문을 엽니다." data-en="You free yourself from habitual thought patterns and learn to listen to the signals of body and emotion. Awareness opens the door to wisdom.">습관적 사고의 패턴에서 자유로워지고, 몸과 감정의 신호에 귀 기울이는 법을 배웁니다. 알아차림이 지혜의 문을 엽니다.</p>
+  </div>
+  <div class="value-item reveal reveal-delay-3">
+    <span class="value-icon">Compassion</span>
+    <h3 class="value-title" data-ko="연민" data-en="Compassion">연민</h3>
+    <p class="value-desc" data-ko="자기 연민에서 시작해 공감적 경청, 진실 말하기, 부탁하기, 그리고 용서에 이르기까지 — 연민은 관계를 변화시킵니다." data-en="Beginning with self-compassion, through empathic listening, honest speaking, making requests, and forgiveness — compassion transforms relationships.">자기 연민에서 시작해 공감적 경청, 진실 말하기, 부탁하기, 그리고 용서에 이르기까지 — 연민은 관계를 변화시킵니다.</p>
+  </div>
+</section>
+
+<!-- CURRICULUM -->
+<section class="curriculum" id="curriculum">
+  <div class="curriculum-header reveal">
+    <div>
+      <p style="font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--sage);margin-bottom:12px;" data-ko="12주 커리큘럼" data-en="12-Week Curriculum">12주 커리큘럼</p>
+      <h2 class="section-title" style="margin-bottom:0;" data-ko="무엇을 배우게 될까요" data-en="What Will You Learn">무엇을 배우게 될까요</h2>
+    </div>
+    <p class="curriculum-note" data-ko="매주 솔로 실습 · 버디 실습 · 그룹 서클의 세 가지 형태로 진행됩니다" data-en="Each week includes three formats: solo practice · buddy practice · group circle">매주 솔로 실습 · 버디 실습 · 그룹 서클의 세 가지 형태로 진행됩니다</p>
+  </div>
+  <div class="weeks-grid">
+    <div class="week-card reveal">
+      <span class="week-num">01</span>
+      <div class="week-theme" data-ko="오리엔테이션 & 의도 설정" data-en="Orientation & Setting Intentions">오리엔테이션 & 의도 설정</div>
+      <div class="week-topics" data-ko="과정 소개 · 비폭력의 의미 · 나의 의도 탐색" data-en="Course intro · Meaning of NVC · Exploring your intention">과정 소개 · 비폭력의 의미 · 나의 의도 탐색</div>
+    </div>
+    <div class="week-card reveal reveal-delay-1">
+      <span class="week-num">02</span>
+      <div class="week-theme" data-ko="정지 속 명상" data-en="Meditation in Stillness">정지 속 명상</div>
+      <div class="week-topics" data-ko="앉기 명상 · 호흡 알아차림 · 현재 순간" data-en="Sitting meditation · Breath awareness · Present moment">앉기 명상 · 호흡 알아차림 · 현재 순간</div>
+    </div>
+    <div class="week-card reveal reveal-delay-2">
+      <span class="week-num">03</span>
+      <div class="week-theme" data-ko="몸과 감정 알아차림" data-en="Body & Emotion Awareness">몸과 감정 알아차림</div>
+      <div class="week-topics" data-ko="신체 감각 · 감정 어휘 · 감정-필요 연결" data-en="Body sensation · Feelings vocabulary · Feelings-needs connection">신체 감각 · 감정 어휘 · 감정-필요 연결</div>
+    </div>
+    <div class="week-card reveal reveal-delay-3">
+      <span class="week-num">04</span>
+      <div class="week-theme" data-ko="습관적 사고에서 자유로워지기" data-en="Freeing Yourself from Habitual Thinking">습관적 사고에서 자유로워지기</div>
+      <div class="week-topics" data-ko="판단 알아차림 · 자기 개념 · 이야기 놓아주기" data-en="Noticing judgments · Self-concept · Releasing stories">판단 알아차림 · 자기 개념 · 이야기 놓아주기</div>
+    </div>
+    <div class="week-card reveal highlight">
+      <span class="week-num">05</span>
+      <div class="week-theme" data-ko="공감적 경청" data-en="Empathic Listening">공감적 경청</div>
+      <div class="week-topics" data-ko="온전한 현존 · 반영하기 · 침묵의 공감" data-en="Full presence · Reflecting · Silent empathy">온전한 현존 · 반영하기 · 침묵의 공감</div>
+    </div>
+    <div class="week-card reveal reveal-delay-1 highlight">
+      <span class="week-num">06</span>
+      <div class="week-theme" data-ko="자기 연민" data-en="Self-Compassion">자기 연민</div>
+      <div class="week-topics" data-ko="내면의 비판자 · 애도와 수용 · 자기 공감" data-en="Inner critic · Mourning & acceptance · Self-empathy">내면의 비판자 · 애도와 수용 · 자기 공감</div>
+    </div>
+    <div class="week-card reveal reveal-delay-2 highlight">
+      <span class="week-num">07</span>
+      <div class="week-theme" data-ko="연민 어린 경계" data-en="Compassionate Boundaries">연민 어린 경계</div>
+      <div class="week-topics" data-ko="필요 기반 경계 · 두려움 없는 No · 가치 명료화" data-en="Needs-based limits · Fearless No · Values clarification">필요 기반 경계 · 두려움 없는 No · 가치 명료화</div>
+    </div>
+    <div class="week-card reveal reveal-delay-3 highlight">
+      <span class="week-num">08</span>
+      <div class="week-theme" data-ko="진실 말하기" data-en="Honest Expression">진실 말하기</div>
+      <div class="week-topics" data-ko="관찰·감정·필요·부탁 · 언어 속 명상" data-en="Observation · Feeling · Need · Request · Meditation in speech">관찰·감정·필요·부탁 · 언어 속 명상</div>
+    </div>
+    <div class="week-card reveal">
+      <span class="week-num">09</span>
+      <div class="week-theme" data-ko="부탁하기 & 도움 구하기" data-en="Making Requests & Asking for Help">부탁하기 & 도움 구하기</div>
+      <div class="week-topics" data-ko="구체적 부탁 · 요구 vs 부탁 · 거절 다루기" data-en="Specific requests · Demands vs requests · Handling refusals">구체적 부탁 · 요구 vs 부탁 · 거절 다루기</div>
+    </div>
+    <div class="week-card reveal reveal-delay-1">
+      <span class="week-num">10</span>
+      <div class="week-theme" data-ko="용서 & 놓아주기" data-en="Forgiveness & Letting Go">용서 & 놓아주기</div>
+      <div class="week-topics" data-ko="자기 용서 · 타인 용서 · 슬픔과 감사" data-en="Self-forgiveness · Forgiving others · Grief & gratitude">자기 용서 · 타인 용서 · 슬픔과 감사</div>
+    </div>
+    <div class="week-card reveal reveal-delay-2">
+      <span class="week-num">11</span>
+      <div class="week-theme" data-ko="행동 속 명상" data-en="Meditation in Action">행동 속 명상</div>
+      <div class="week-topics" data-ko="비폭력 직접 행동 · 공동체 참여 · 사회 변화" data-en="Nonviolent direct action · Community engagement · Social change">비폭력 직접 행동 · 공동체 참여 · 사회 변화</div>
+    </div>
+    <div class="week-card reveal reveal-delay-3">
+      <span class="week-num">12</span>
+      <div class="week-theme" data-ko="통합 & 계속 나아가기" data-en="Integration & Moving Forward">통합 & 계속 나아가기</div>
+      <div class="week-topics" data-ko="12주 통합 · 지속 실천 계획 · 공동체 연결" data-en="12-week integration · Ongoing practice plan · Community connection">12주 통합 · 지속 실천 계획 · 공동체 연결</div>
+    </div>
+  </div>
+</section>
+
+<!-- STRUCTURE -->
+<section class="structure" id="structure">
+  <div class="structure-inner">
+    <h2 class="structure-title reveal" data-ko="어떻게 진행되나요" data-en="How It Works">어떻게 진행되나요</h2>
+    <div class="formats">
+      <div class="format-card reveal">
+        <span class="format-emoji">🧘</span>
+        <div class="format-name" data-ko="솔로 실습" data-en="Solo Practice">솔로 실습</div>
+        <p class="format-desc" data-ko="매일 혼자서 실천하는 명상, 저널링, 일상 실험들. 삶 자체가 수행의 자리가 됩니다." data-en="Daily personal meditation, journaling, and everyday experiments. Life itself becomes the practice ground.">매일 혼자서 실천하는 명상, 저널링, 일상 실험들. 삶 자체가 수행의 자리가 됩니다.</p>
+      </div>
+      <div class="format-card reveal reveal-delay-2">
+        <span class="format-emoji">🤝</span>
+        <div class="format-name" data-ko="버디 실습" data-en="Buddy Practice">버디 실습</div>
+        <p class="format-desc" data-ko="파트너 또는 한 명의 동료와 함께하는 공감 연습. 깊은 경청과 진실한 대화를 나눕니다." data-en="Empathy practice with a partner or one colleague. Deep listening and honest dialogue are shared together.">파트너 또는 한 명의 동료와 함께하는 공감 연습. 깊은 경청과 진실한 대화를 나눕니다.</p>
+      </div>
+      <div class="format-card reveal reveal-delay-3">
+        <span class="format-emoji">⭕</span>
+        <div class="format-name" data-ko="그룹 서클" data-en="Group Circle">그룹 서클</div>
+        <p class="format-desc" data-ko="소그룹이 함께 모여 나누는 서클 모임. 서로의 실천을 지지하고 공동체를 경험합니다." data-en="A circle gathering where a small group comes together to share, support each other's practice, and experience community.">소그룹이 함께 모여 나누는 서클 모임. 서로의 실천을 지지하고 공동체를 경험합니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIENCE -->
+<section class="audience">
+  <div style="max-width:480px;">
+    <p style="font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--sage);margin-bottom:12px;" class="reveal" data-ko="이런 분들께" data-en="Who It's For">이런 분들께</p>
+    <h2 class="section-title reveal" data-ko="누가 참여할 수 있나요" data-en="Who Can Join">누가 참여할 수 있나요</h2>
+  </div>
+  <div class="audience-grid">
+    <div class="audience-item reveal">
+      <div class="audience-icon"></div>
+      <h3 class="audience-title" data-ko="NVC를 처음 만나는 분" data-en="New to NVC">NVC를 처음 만나는 분</h3>
+      <p class="audience-desc" data-ko="비폭력 대화를 처음 접하거나 기초부터 체계적으로 배우고 싶은 분. 이론이 아닌 실천 중심으로 자연스럽게 익히게 됩니다." data-en="Those encountering NVC for the first time or wanting to learn systematically from the ground up. You will naturally absorb it through practice, not theory.">비폭력 대화를 처음 접하거나 기초부터 체계적으로 배우고 싶은 분. 이론이 아닌 실천 중심으로 자연스럽게 익히게 됩니다.</p>
+    </div>
+    <div class="audience-item reveal reveal-delay-2">
+      <div class="audience-icon"></div>
+      <h3 class="audience-title" data-ko="NVC를 이미 배운 분" data-en="Already Learned NVC">NVC를 이미 배운 분</h3>
+      <p class="audience-desc" data-ko="NVC 교육을 받았지만 일상에서 잘 적용되지 않는다고 느끼는 분. 이 과정은 앎을 삶으로 연결하는 다리가 됩니다." data-en="Those who've received NVC training but feel it doesn't translate into daily life. This course bridges the gap between knowing and living.">NVC 교육을 받았지만 일상에서 잘 적용되지 않는다고 느끼는 분. 이 과정은 앎을 삶으로 연결하는 다리가 됩니다.</p>
+    </div>
+    <div class="audience-item reveal reveal-delay-1">
+      <div class="audience-icon"></div>
+      <h3 class="audience-title" data-ko="커플 & 가족" data-en="Couples & Families">커플 & 가족</h3>
+      <p class="audience-desc" data-ko="관계 안에서 더 깊은 연결과 이해를 원하는 커플이나 가족. 버디 실습을 통해 함께 성장할 수 있습니다." data-en="Couples or families seeking deeper connection and understanding in their relationship. Grow together through buddy practice.">관계 안에서 더 깊은 연결과 이해를 원하는 커플이나 가족. 버디 실습을 통해 함께 성장할 수 있습니다.</p>
+    </div>
+    <div class="audience-item reveal reveal-delay-3">
+      <div class="audience-icon"></div>
+      <h3 class="audience-title" data-ko="소그룹 & 공동체" data-en="Small Groups & Communities">소그룹 & 공동체</h3>
+      <p class="audience-desc" data-ko="교회, 직장, 학교 등 소그룹으로 비폭력 문화를 세워가고 싶은 공동체. 그룹 서클 자료가 완비되어 있습니다." data-en="Communities — churches, workplaces, schools — wanting to build a nonviolent culture as a small group. Full group circle materials included.">교회, 직장, 학교 등 소그룹으로 비폭력 문화를 세워가고 싶은 공동체. 그룹 서클 자료가 완비되어 있습니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <p style="font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--sage);text-align:center;" class="reveal" data-ko="참가자 후기" data-en="Testimonials">참가자 후기</p>
+  <h2 class="section-title" style="text-align:center;margin-top:10px;" data-ko="삶이 달라졌다고 말합니다" data-en="They Say Their Lives Have Changed">삶이 달라졌다고 말합니다</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial reveal">
+      <p class="testimonial-text" data-ko="이 과정을 통해 제 마음이 이전에는 상상할 수 없던 방식으로 열렸습니다. 이 12주의 여정을 전 세계 모든 사람이 경험한다면, 우리는 훨씬 더 친절하고 지혜로운 세상에 살게 될 것입니다." data-en="This journey opened my heart in ways I never thought possible. If every person in the world experienced these 12 weeks, we would live in a far kinder and wiser world.">이 과정을 통해 제 마음이 이전에는 상상할 수 없던 방식으로 열렸습니다. 이 12주의 여정을 전 세계 모든 사람이 경험한다면, 우리는 훨씬 더 친절하고 지혜로운 세상에 살게 될 것입니다.</p>
+      <div class="testimonial-author"><strong>Melissa Bernstein</strong><span data-ko="Melissa & Doug 공동창업자" data-en="Co-founder, Melissa & Doug">Melissa & Doug 공동창업자</span></div>
+    </div>
+    <div class="testimonial reveal reveal-delay-2">
+      <p class="testimonial-text" data-ko="이 책은 더 많은 알아차림과 사랑, 그리고 연결을 삶에 가져오고자 하는 누구에게나 귀중한 자료입니다." data-en="This book is an invaluable resource for anyone seeking to bring more awareness, love, and connection into their life.">이 책은 더 많은 알아차림과 사랑, 그리고 연결을 삶에 가져오고자 하는 누구에게나 귀중한 자료입니다.</p>
+      <div class="testimonial-author"><strong>Oren Jay Sofer</strong><em>Say What You Mean</em> <span data-ko="저자" data-en="author">저자</span></div>
+    </div>
+    <div class="testimonial reveal reveal-delay-3">
+      <p class="testimonial-text" data-ko="영적 진화를 실현하기 위해서는 같은 비전과 가치를 공유하는 공동체의 지지가 필요합니다. 온고 북은 이 비전을 위한 실질적인 지지대입니다." data-en="To realize spiritual evolution, we need the support of communities that share the same vision and values. The Ongo Book is a practical support structure for this vision.">영적 진화를 실현하기 위해서는 같은 비전과 가치를 공유하는 공동체의 지지가 필요합니다. 온고 북은 이 비전을 위한 실질적인 지지대입니다.</p>
+      <div class="testimonial-author"><strong>Robert Gonzales</strong><span data-ko="Center for Living Compassion 설립자" data-en="Founder, Center for Living Compassion">Center for Living Compassion 설립자</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTRUCTOR -->
+<section class="instructor" id="instructor">
+  <div class="instructor-inner">
+    <div class="instructor-photo">
+      <img src="images/photo-standing-3.jpg" alt="Gina Hyunhee Kim" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;" />
+    </div>
+    <div class="instructor-content">
+      <p class="instructor-role reveal" data-ko="강사 소개" data-en="About the Instructor">강사 소개</p>
+      <h2 class="instructor-name reveal">김현희 (Gina Hyunhee Kim)</h2>
+      <p class="instructor-bio reveal reveal-delay-1"
+         data-ko="공인 로고테라피스트이자 마음챙김 대화 전문가로서, NVC(비폭력 대화)와 빅터 프랭클의 의미 치료를 통합한 상담을 2020년부터 현재까지 진행해 왔습니다. 심각한 우울, 이혼, 자살 충동 등 고위험 상황의 내담자들을 위한 위기 개입과 함께, NVC 그룹 워크샵을 통해 참가자들이 공감적 경청과 자기 연민을 일상에서 실천할 수 있도록 돕고 있습니다."
+         data-en="As a Certified Logotherapist and Mindful Dialogue Practitioner, Gina has been offering integrated counseling combining NVC and Viktor Frankl's Logotherapy since 2020. Alongside crisis intervention for high-risk individuals facing severe depression, divorce, and suicidal ideation, she facilitates NVC group workshops to help participants practice empathic listening and self-compassion in daily life.">
+        공인 로고테라피스트이자 마음챙김 대화 전문가로서, NVC(비폭력 대화)와 빅터 프랭클의 의미 치료를 통합한 상담을 2020년부터 현재까지 진행해 왔습니다. 심각한 우울, 이혼, 자살 충동 등 고위험 상황의 내담자들을 위한 위기 개입과 함께, NVC 그룹 워크샵을 통해 참가자들이 공감적 경청과 자기 연민을 일상에서 실천할 수 있도록 돕고 있습니다.
+      </p>
+      <p class="instructor-bio reveal reveal-delay-2"
+         data-ko="한국외국어대학교에서 영문학을 전공하였으며, 한국 로고테라피 협회에서 로고테라피스트 자격을 취득했습니다. 시리아 난민 사역, 단기 선교(멕시코·중국·캐나다 원주민 커뮤니티) 등 다양한 현장에서 공감과 연결의 언어를 나누며 교육과 상담을 이어오고 있습니다."
+         data-en="She holds a B.A. in English Literature from Hankuk University of Foreign Studies and her Logotherapist certification from the Korea Logotherapy Association. Through diverse ministry — Syrian refugee work, short-term missions in Mexico, China, and Canadian Indigenous communities — she continues sharing the language of empathy and connection.">
+        한국외국어대학교에서 영문학을 전공하였으며, 한국 로고테라피 협회에서 로고테라피스트 자격을 취득했습니다. 시리아 난민 사역, 단기 선교(멕시코·중국·캐나다 원주민 커뮤니티) 등 다양한 현장에서 공감과 연결의 언어를 나누며 교육과 상담을 이어오고 있습니다.
+      </p>
+      <div class="credentials reveal reveal-delay-3">
+        <span class="credential" data-ko="공인 로고테라피스트" data-en="Certified Logotherapist">공인 로고테라피스트</span>
+        <span class="credential" data-ko="마음챙김 대화 전문가" data-en="Mindful Dialogue Practitioner">마음챙김 대화 전문가</span>
+        <span class="credential" data-ko="NVC 퍼실리테이터" data-en="NVC Facilitator">NVC 퍼실리테이터</span>
+        <span class="credential" data-ko="영한 이중 언어 상담" data-en="Bilingual EN/KR Counseling">영한 이중 언어 상담</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA + FORM -->
+<section class="cta-section" id="register">
+  <div class="cta-inner">
+    <!-- 왼쪽: 문구 -->
+    <div class="cta-left">
+      <p class="cta-eyebrow reveal" data-ko="지금 시작하세요" data-en="Start Now">지금 시작하세요</p>
+      <h2 class="cta-title reveal" data-ko="당신의 12주 여정이<br>기다리고 있습니다" data-en="Your 12-Week Journey<br>Is Waiting for You">당신의 12주 여정이<br>기다리고 있습니다</h2>
+      <p class="cta-subtitle reveal" data-ko="평화 · 지혜 · 연민 — 그것이 되어가는 과정" data-en="Peace · Wisdom · Compassion — The Path of Becoming">평화 · 지혜 · 연민 — 그것이 되어가는 과정</p>
+      <ul class="cta-checklist reveal">
+        <li data-ko="12주 집중 커리큘럼" data-en="12-week intensive curriculum">12주 집중 커리큘럼</li>
+        <li data-ko="온라인 & 대면 병행 가능" data-en="Online & in-person options">온라인 & 대면 병행 가능</li>
+        <li data-ko="소그룹 서클 운영 지원" data-en="Small group circle support">소그룹 서클 운영 지원</li>
+        <li data-ko="영어 · 한국어 진행" data-en="Available in English & Korean">영어 · 한국어 진행</li>
+      </ul>
+    </div>
+
+    <!-- 오른쪽: 폼 -->
+    <form class="enroll-form reveal" id="enroll-form" action="https://formspree.io/f/mlgaozyb" method="POST">
+      <div class="enroll-form-row">
+        <div class="enroll-form-group">
+          <label for="enroll-name" data-ko="이름" data-en="Full Name">이름</label>
+          <input type="text" id="enroll-name" name="name" required placeholder="홍길동" />
+        </div>
+        <div class="enroll-form-group">
+          <label for="enroll-email" data-ko="이메일" data-en="Email">이메일</label>
+          <input type="email" id="enroll-email" name="email" required placeholder="you@email.com" />
+        </div>
+      </div>
+      <div class="enroll-form-group">
+        <label for="enroll-phone" data-ko="전화번호" data-en="Phone Number">전화번호</label>
+        <input type="tel" id="enroll-phone" name="phone" placeholder="+1 (416) 000-0000" />
+      </div>
+      <div class="enroll-form-group">
+        <label for="enroll-message" data-ko="메시지" data-en="Message">메시지</label>
+        <textarea id="enroll-message" name="message" required placeholder="궁금한 점이나 신청 동기를 자유롭게 작성해 주세요…"></textarea>
+      </div>
+      <button type="submit" class="enroll-submit" id="enroll-submit" data-ko="수강 신청하기" data-en="Enroll Now">수강 신청하기</button>
+      <p class="enroll-success" id="enroll-success" data-ko="신청이 완료되었습니다. 곧 연락드리겠습니다." data-en="Your enrollment has been received. We'll be in touch soon."></p>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">The Ongo Book 2.0 — <span data-ko="강의 과정" data-en="Course">강의 과정</span></div>
+  <div class="footer-links">
+    <a href="#" data-ko="과정 소개" data-en="About">과정 소개</a>
+    <a href="#curriculum" data-ko="커리큘럼" data-en="Curriculum">커리큘럼</a>
+    <a href="#register" data-ko="문의" data-en="Contact">문의</a>
+  </div>
+  <div class="footer-copy">© 2025 <span data-ko="강의 과정" data-en="Course">강의 과정</span>. Based on The Ongo Book 2.0</div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // Sticky nav shadow
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').style.boxShadow =
+      window.scrollY > 20 ? '0 4px 24px rgba(0,0,0,0.06)' : 'none';
+  });
+
+  // Formspree enrollment form
+  const enrollForm = document.getElementById('enroll-form');
+  const enrollSuccess = document.getElementById('enroll-success');
+  const enrollSubmit = document.getElementById('enroll-submit');
+
+  enrollForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    enrollSubmit.disabled = true;
+    enrollSubmit.textContent = currentLang === 'ko' ? '전송 중…' : 'Sending…';
+
+    try {
+      const res = await fetch(enrollForm.action, {
+        method: 'POST',
+        body: new FormData(enrollForm),
+        headers: { Accept: 'application/json' }
+      });
+      if (res.ok) {
+        enrollForm.reset();
+        enrollSubmit.textContent = currentLang === 'ko' ? '신청 완료 ✓' : 'Submitted ✓';
+        enrollSubmit.style.background = '#6a8e6e';
+        enrollSuccess.style.display = 'block';
+        setTimeout(() => {
+          enrollSubmit.textContent = currentLang === 'ko' ? '수강 신청하기' : 'Enroll Now';
+          enrollSubmit.style.background = '';
+          enrollSubmit.disabled = false;
+          enrollSuccess.style.display = 'none';
+        }, 4000);
+      } else { throw new Error(); }
+    } catch {
+      enrollSubmit.textContent = currentLang === 'ko' ? '오류 — 다시 시도해주세요' : 'Error — please try again';
+      enrollSubmit.style.background = '#a05050';
+      enrollSubmit.disabled = false;
+    }
+  });
+
+  // Bilingual toggle
+  let currentLang = 'ko';
+  function setLang(lang) {
+    currentLang = lang;
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.textContent.trim().toLowerCase() === lang);
+    });
+    document.querySelectorAll('[data-ko]').forEach(el => {
+      const text = el.getAttribute('data-' + lang);
+      if (text) el.innerHTML = text;
+    });
+  }
+</script>
+</body>
+</html>
