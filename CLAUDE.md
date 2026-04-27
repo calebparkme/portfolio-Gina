@@ -1,63 +1,63 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+이 파일은 Claude Code (claude.ai/code)가 이 저장소에서 작업할 때 참고하는 가이드입니다.
 
-## Project overview
+## 프로젝트 개요
 
-Static personal portfolio site for Gina Hyunhee Kim (ginakim.org), a Certified Logotherapist and NVC Practitioner based in Milton, Ontario. Deployed via GitHub Pages with the `CNAME` file pointing to `ginakim.org`.
+캐나다 온타리오 밀턴에 거주하는 공인 로고테라피스트이자 NVC 전문가 김현희(Gina Hyunhee Kim)의 개인 포트폴리오 사이트 (ginakim.org). GitHub Pages로 배포되며, `CNAME` 파일이 `ginakim.org` 도메인을 연결합니다.
 
-No build step, no package manager, no test suite — plain HTML, CSS, and vanilla JavaScript.
+빌드 과정 없음, 패키지 매니저 없음, 테스트 없음 — 순수 HTML, CSS, 바닐라 JavaScript로 구성됩니다.
 
-## Local development
+## 로컬 개발
 
-Open in a browser directly, or spin up a local server to avoid any path issues:
+브라우저에서 직접 열거나, 경로 문제를 피하려면 로컬 서버를 실행하세요:
 
 ```bash
 python3 -m http.server 8080
-# or
+# 또는
 npx serve .
 ```
 
-## File structure
+## 파일 구조
 
-- `index.html` — main single-page portfolio (Hero → About → Services → Philosophy → Contact → SNS)
-- `ongo-course.html` — standalone landing page for "The Ongo Book 2.0" online course; **has its own embedded `<style>` block** (no external CSS dependency)
-- `css/style.css` — all styles for `index.html`
-- `images/` — photos used across both pages
+- `index.html` — 메인 단일 페이지 포트폴리오 (Hero → About → Services → Philosophy → Contact → SNS)
+- `ongo-course.html` — "The Ongo Book 2.0" 온라인 강좌 랜딩 페이지; **자체 `<style>` 블록 포함** (외부 CSS 없음)
+- `css/style.css` — `index.html` 전용 스타일 전체
+- `images/` — 두 페이지에서 공통으로 사용하는 사진
 
-## Bilingual system (EN/KO)
+## 이중 언어 시스템 (EN/KO)
 
-All user-facing text in `index.html` uses paired `data-en` / `data-ko` attributes:
+`index.html`의 모든 사용자 노출 텍스트는 `data-en` / `data-ko` 속성 쌍으로 작성됩니다:
 
 ```html
 <span data-en="About" data-ko="소개">About</span>
 ```
 
-The `setLang(lang)` function in the inline `<script>` at the bottom of `index.html` iterates every `[data-en]` element and swaps `innerHTML` to the selected language attribute. When editing any copy, **both `data-en` and `data-ko` must be updated**, as well as the fallback text content (which defaults to English on page load).
+`index.html` 하단 인라인 `<script>`의 `setLang(lang)` 함수가 `[data-en]` 요소를 순회하며 `innerHTML`을 선택한 언어 속성값으로 교체합니다. 텍스트를 수정할 때는 **`data-en`과 `data-ko` 모두 수정**해야 하며, 태그 내부의 기본 텍스트(페이지 로드 시 영어로 표시됨)도 함께 업데이트해야 합니다.
 
-`ongo-course.html` is Korean-only with no language toggle.
+`ongo-course.html`은 한국어 전용이며 언어 전환 기능이 없습니다.
 
-## Contact form
+## 문의 폼
 
-Handled by Formspree (`action="https://formspree.io/f/xvzdvlrj"`) via AJAX fetch in the inline script. No back-end changes needed for contact form updates — only the Formspree endpoint in the `action` attribute matters.
+`index.html` 인라인 스크립트에서 Formspree(`action="https://formspree.io/f/xvzdvlrj"`)로 AJAX fetch 전송합니다. 폼 관련 변경 시 백엔드 작업은 불필요하며, `action` 속성의 Formspree 엔드포인트만 중요합니다.
 
-## Design system
+## 디자인 시스템
 
-CSS custom properties are defined in `css/style.css` `:root`. Key tokens:
+CSS 변수는 `css/style.css`의 `:root`에 정의되어 있습니다. 주요 토큰:
 
-| Variable | Use |
+| 변수 | 용도 |
 |---|---|
-| `--accent` / `--sage` | Primary green tones for interactive elements |
-| `--dark` | Headings, footer background |
-| `--warm-white` / `--cream` | Alternating section backgrounds |
-| `--mid` | Body text |
-| `--font-serif` | Cormorant Garamond — headings, quotes, large display text |
-| `--font-sans` | Lato + Noto Sans KR — body, labels, navigation |
+| `--accent` / `--sage` | 인터랙티브 요소의 주요 녹색 계열 |
+| `--dark` | 제목, 푸터 배경 |
+| `--warm-white` / `--cream` | 섹션 배경 교차 색상 |
+| `--mid` | 본문 텍스트 |
+| `--font-serif` | Cormorant Garamond — 제목, 인용구, 대형 표시 텍스트 |
+| `--font-sans` | Lato + Noto Sans KR — 본문, 레이블, 내비게이션 |
 
-`ongo-course.html` has its own separate color palette defined inline (uses `--sage`, `--gold`, `--charcoal`, etc.) that does not share values with `style.css`.
+`ongo-course.html`은 인라인으로 별도 색상 팔레트(`--sage`, `--gold`, `--charcoal` 등)를 정의하며, `style.css`와 값을 공유하지 않습니다.
 
-## Responsive breakpoints
+## 반응형 브레이크포인트
 
-Defined in `css/style.css`:
-- `≤ 1024px`: two-column grids collapse, hero stacks vertically
-- `≤ 768px`: nav links hidden, single-column layout throughout
+`css/style.css`에 정의:
+- `≤ 1024px`: 2열 그리드 축소, 히어로 세로 배치
+- `≤ 768px`: 내비게이션 링크 숨김, 전체 단일 열 레이아웃
