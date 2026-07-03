@@ -20,7 +20,7 @@ npx serve .
 
 ## 파일 구조
 
-- `index.html` — 메인 단일 페이지 포트폴리오 (Hero → About → Services → Philosophy → Contact → SNS)
+- `index.html` — 메인 단일 페이지 포트폴리오 (Hero → About → Services → Philosophy → Biography → Contact → SNS)
 - `ongo-course.html` — "The Ongo Book 2.0" 온라인 강좌 랜딩 페이지; **자체 `<style>` 블록 포함** (외부 CSS 없음)
 - `css/style.css` — `index.html` 전용 스타일 전체
 - `images/` — 두 페이지에서 공통으로 사용하는 사진
@@ -55,6 +55,18 @@ CSS 변수는 `css/style.css`의 `:root`에 정의되어 있습니다. 주요 �
 | `--font-sans` | Lato + Noto Sans KR — 본문, 레이블, 내비게이션 |
 
 `ongo-course.html`은 인라인으로 별도 색상 팔레트(`--sage`, `--gold`, `--charcoal` 등)를 정의하며, `style.css`와 값을 공유하지 않습니다.
+
+## Biography 섹션 (수직 타임라인)
+
+`#biography`는 `.timeline` 안에 `.timeline-item`들을 나열한 수직 타임라인입니다. `nth-child(odd/even)`으로 좌우 교차 배치되며(모바일에서는 단일 열로 축소), 각 항목은 `.timeline-marker`(연도 라벨 + 점)와 `.timeline-card`(제목 + 본문, 선택적으로 `.timeline-photo`)로 구성됩니다.
+
+사진은 `.timeline-photo`에 붙는 tone 클래스로 시간의 흐름을 표현합니다: `tone-distant`(과거, 흑백/세피아) → `tone-muted`(중간, 채도 낮춤) → `tone-vivid`(현재, 채도 강조). 크기는 `size-sm` / `size-md` / `size-lg` / `size-wide`(가로 사진, 3:2)로 조절합니다. 새 타임라인 항목을 추가할 때 이 패턴(연도, 톤, 크기)을 유지하세요.
+
+한 항목에 여러 장을 넣을 때:
+- 사진 2장: `.timeline-photo-group`(세로 스택, 320px 폭). 파노라마처럼 매우 넓은 사진은 `aspect-pano`(3:1)를 추가로 붙입니다.
+- 사진 3장: `.timeline-photo-trio`(320px 폭, 2열 그리드). 대표 사진에 `photo-main`(3:2, 상단 전체 폭), 나머지 두 장에 `photo-sub`(4:3, 하단 2열)를 붙입니다. About 섹션의 `about-images` 그리드와 같은 패턴입니다.
+
+원본 사진은 `images/`에 대용량으로 들어오는 경우가 많으므로(수 MB, 큰 해상도), 웹에 올리기 전 폭 1200px 내외로 리사이즈하고 JPEG 품질 85 정도로 압축한 뒤 원본은 삭제합니다.
 
 ## 반응형 브레이크포인트
 
