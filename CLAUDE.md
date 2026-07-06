@@ -20,7 +20,7 @@ npx serve .
 
 ## 파일 구조
 
-- `index.html` — 메인 단일 페이지 포트폴리오 (Hero → About → Services → Philosophy → Biography → Contact → SNS)
+- `index.html` — 메인 단일 페이지 포트폴리오 (Hero → About → Services → Philosophy → Biography → Foundations → Contact → SNS)
 - `ongo-course.html` — "The Ongo Book 2.0" 온라인 강좌 랜딩 페이지; **자체 `<style>` 블록 포함** (외부 CSS 없음)
 - `css/style.css` — `index.html` 전용 스타일 전체
 - `images/` — 두 페이지에서 공통으로 사용하는 사진
@@ -67,6 +67,16 @@ CSS 변수는 `css/style.css`의 `:root`에 정의되어 있습니다. 주요 �
 - 사진 3장: `.timeline-photo-trio`(320px 폭, 2열 그리드). 대표 사진에 `photo-main`(3:2, 상단 전체 폭), 나머지 두 장에 `photo-sub`(4:3, 하단 2열)를 붙입니다. About 섹션의 `about-images` 그리드와 같은 패턴입니다.
 
 원본 사진은 `images/`에 대용량으로 들어오는 경우가 많으므로(수 MB, 큰 해상도), 웹에 올리기 전 폭 1200px 내외로 리사이즈하고 JPEG 품질 85 정도로 압축한 뒤 원본은 삭제합니다.
+
+## Foundations 섹션 (탭 UI)
+
+`#foundations`는 Biography와 Contact 사이에 위치하며, 로고테라피와 NVC(비폭력대화)를 소개하는 탭 전환 섹션입니다. `.foundations-tab-btn` 버튼 클릭 시 인라인 `setFoundationsTab(tab)` 함수가 `data-tab`/`data-panel` 값이 일치하는 `.foundations-panel`에 `.active` 클래스를 토글합니다(언어 전환 `setLang`과 별개의 독립적인 토글 로직). 새 탭을 추가하려면 버튼과 패널 모두에 동일한 `data-tab`/`data-panel` 값을 부여해야 합니다.
+
+각 패널은 `.foundations-grid`(본문 2단: 좌측 `.foundations-intro` 서술+인용구, 우측 `.foundations-principles` 핵심 개념 카드)와 하단 `.foundations-footer`(자격/활동 내역, `.credential-block` 또는 `.activity-list`)로 구성됩니다. 패널 제목(`.foundations-name`)도 다른 텍스트와 마찬가지로 `data-en`/`data-ko` 쌍이 필요합니다(자칫 누락하기 쉬움).
+
+창시자 사진은 `.foundations-intro` 첫 자식으로 들어가는 `<figure class="foundations-photo-frame">`(직사각형, 좌측 float)로 표시되며, 본문 첫 단락을 감싸듯 배치됩니다(데스크톱). 모바일(`≤768px`)에서는 float이 해제되고 사진이 중앙 정렬로 쌓입니다. 빅터 프랭클 사진(`images/Viktor_Frankl2.jpg`)은 Wikimedia Commons의 CC BY-SA 3.0 DE 라이선스 이미지라 `<figcaption class="foundations-photo-credit">`에 출처 표기가 있습니다. 마샬 로젠버그 사진(`images/Marshall-Rosenberg1.jpeg`)은 사용자가 직접 제공한 파일로 출처/라이선스가 확인되지 않아 캡션이 없습니다 — 정확한 출처를 받으면 같은 방식으로 캡션을 추가하세요.
+
+NVC 전파 활동(NVC Outreach) 아래 `.youtube-playlists`는 채널(`@hyunheekim1222`)의 재생목록 3개(NVC 기초, 대화의 코드, 강의 영상)를 소개하는 카드 그리드입니다. 각 `.playlist-card`의 썸네일은 실제 유튜브 재생목록 페이지를 헤드리스 브라우저로 스크린샷 후 크롭한 이미지(`images/yt-playlist-*.jpg`)입니다. 재생목록 내용이 바뀌면(영상 추가/제목 변경) 썸네일도 다시 캡처해서 교체해야 최신 상태가 유지됩니다.
 
 ## 반응형 브레이크포인트
 
