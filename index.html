@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -21,9 +21,9 @@
       <li><a href="#contact" data-en="Contact" data-ko="연락처">Contact</a></li>
     </ul>
     <div class="nav-lang">
-      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn active" onclick="setLang('en', true)">EN</button>
       <span class="lang-divider"></span>
-      <button class="lang-btn" onclick="setLang('ko')">KO</button>
+      <button class="lang-btn" onclick="setLang('ko', true)">KO</button>
     </div>
   </nav>
 
@@ -733,8 +733,9 @@
 
     // Bilingual toggle
     let currentLang = 'en';
-    function setLang(lang) {
+    function setLang(lang, manual) {
       currentLang = lang;
+      document.documentElement.lang = lang;
       document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
       });
@@ -747,7 +748,32 @@
         const text = opt.getAttribute('data-' + lang);
         if (text) opt.textContent = text;
       });
+      // A manual click always overrides auto-detection on future visits
+      if (manual) {
+        try { localStorage.setItem('lang', lang); } catch (e) {}
+      }
     }
+
+    // Auto-detect language from the visitor's IP location: Korea -> Korean,
+    // everywhere else -> English. Skipped if the visitor already chose a
+    // language manually (saved in localStorage), so the toggle always wins.
+    (function autoDetectLang() {
+      let saved = null;
+      try { saved = localStorage.getItem('lang'); } catch (e) {}
+      if (saved === 'en' || saved === 'ko') {
+        setLang(saved);
+        return;
+      }
+      fetch('https://get.geojs.io/v1/ip/country.json')
+        .then(res => res.json())
+        .then(data => {
+          setLang(data && data.country_code === 'KR' ? 'ko' : 'en');
+        })
+        .catch(() => {
+          // IP lookup failed (offline, blocked, etc.) — fall back to browser language
+          setLang(navigator.language && navigator.language.toLowerCase().startsWith('ko') ? 'ko' : 'en');
+        });
+    })();
 
     // Formspree AJAX submission
     const contactForm = document.getElementById('contact-form');
