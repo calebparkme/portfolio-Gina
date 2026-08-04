@@ -98,6 +98,7 @@ nav.scrolled {
   font-size: 0.72rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  text-decoration: none;
   color: var(--warm-gray);
   font-family: var(--font-sans);
   transition: color 0.2s;
@@ -1198,6 +1199,75 @@ section {
   margin-top: 6px;
 }
 
+/* ─── FAQ ─── */
+#faq {
+  background: var(--warm-white);
+  padding: 120px 80px;
+}
+
+.faq-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.faq-inner .section-label {
+  text-align: center;
+}
+
+.faq-list {
+  margin-top: 48px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  padding: 22px 4px;
+}
+
+.faq-item summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--dark);
+  transition: color 0.2s;
+}
+
+.faq-item summary::-webkit-details-marker { display: none; }
+
+.faq-item summary::after {
+  content: '+';
+  flex-shrink: 0;
+  font-size: 1.3rem;
+  font-weight: 300;
+  color: var(--accent);
+  transition: transform 0.25s;
+}
+
+.faq-item[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.faq-item summary:hover {
+  color: var(--accent);
+}
+
+.faq-answer {
+  margin-top: 14px;
+  font-size: 0.92rem;
+  line-height: 1.85;
+  color: var(--mid);
+  max-width: 640px;
+}
+
 /* ─── CONTACT ─── */
 #contact {
   background: var(--cream);
@@ -1211,6 +1281,24 @@ section {
   max-width: 1200px;
   margin: 0 auto;
   align-items: end;
+}
+
+.contact-assurance-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  margin-bottom: 8px;
+}
+
+.contact-assurance-list li {
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  color: var(--mid);
+  background: var(--warm-white);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 7px 14px;
 }
 
 .contact-info-list {
@@ -1500,7 +1588,7 @@ footer {
   nav { padding: 16px 24px; }
   .nav-links { display: none; }
   section { padding: 72px 24px; }
-  #about, #contact, #sns, #services, #philosophy, #biography, footer { padding-left: 24px; padding-right: 24px; }
+  #about, #contact, #sns, #services, #philosophy, #biography, #faq, footer { padding-left: 24px; padding-right: 24px; }
   .hero-text { padding: 100px 24px 48px; }
   .services-grid { grid-template-columns: 1fr; }
   .about-stats { grid-template-columns: 1fr 1fr; }

@@ -20,26 +20,43 @@ npx serve .
 
 ## 파일 구조
 
-- `index.html` — 메인 단일 페이지 포트폴리오 (Hero → About → Services → Philosophy → Biography → Foundations → Contact → SNS)
-- `ongo-course.html` — "The Ongo Book 2.0" 온라인 강좌 랜딩 페이지; **자체 `<style>` 블록 포함** (외부 CSS 없음)
-- `css/style.css` — `index.html` 전용 스타일 전체
-- `images/` — 두 페이지에서 공통으로 사용하는 사진
+- `index.html` — 메인 포트폴리오, **영문판** (Hero → About → Services → Philosophy → Biography → Foundations → FAQ → Contact → SNS). 도메인 루트(`ginakim.org/`)에 대응.
+- `ko/index.html` — 메인 포트폴리오, **한글판**. `ginakim.org/ko/`에 대응. `index.html`과 별개의 정적 파일 — 아래 "이중 언어 구조" 참고.
+- `ongo-course.html` — "The Ongo Book 2.0" 온라인 강좌 랜딩 페이지, **한글판**(기본/루트). `ginakim.org/ongo-course.html`. **자체 `<style>` 블록 포함** (외부 CSS 없음).
+- `en/ongo-course.html` — 같은 강좌 페이지의 **영문판**. `ginakim.org/en/ongo-course.html`.
+- `css/style.css` — `index.html`/`ko/index.html` 전용 스타일 전체
+- `images/` — 모든 페이지가 공통으로 사용하는 사진 (`favicon.svg` 포함)
+- `docs/` — 언어별 PDF 등 다운로드 자료 (`NVC-Education-Program-Proposal-Eng.pdf` / `-Kor.pdf`)
+- `robots.txt`, `sitemap.xml` — 검색엔진 크롤링/색인 설정. 4개 URL(`/`, `/ko/`, `/ongo-course.html`, `/en/ongo-course.html`) 모두 등재되어 있고 서로 `hreflang`으로 연결됨. 새 페이지를 추가하면 `sitemap.xml`에도 `<url>` 항목을 추가하세요.
 
-## 이중 언어 시스템 (EN/KO)
+## 이중 언어 구조 (EN/KO) — 언어별 정적 파일 분리
 
-`index.html`의 모든 사용자 노출 텍스트는 `data-en` / `data-ko` 속성 쌍으로 작성됩니다:
+**과거에는 `data-en`/`data-ko` 속성 쌍 + JS `setLang()` 토글로 한 URL에서 언어를 전환했지만, 지금은 언어별로 완전히 분리된 정적 HTML 파일입니다.** AI/검색 크롤러 대부분이 JS를 실행하지 않아 토글 방식은 기본 언어 외 콘텐츠가 색인되지 않는 문제가 있었기 때문입니다. `data-en`/`data-ko` 속성과 `setLang()` 함수는 두 페이지 모두에서 완전히 제거되었습니다.
 
-```html
-<span data-en="About" data-ko="소개">About</span>
-```
+**쌍을 이루는 파일:**
+- `index.html` (EN, 루트) ↔ `ko/index.html` (KO)
+- `ongo-course.html` (KO, 루트) ↔ `en/ongo-course.html` (EN)
 
-`index.html` 하단 인라인 `<script>`의 `setLang(lang)` 함수가 `[data-en]` 요소를 순회하며 `innerHTML`을 선택한 언어 속성값으로 교체합니다. 텍스트를 수정할 때는 **`data-en`과 `data-ko` 모두 수정**해야 하며, 태그 내부의 기본 텍스트(페이지 로드 시 영어로 표시됨)도 함께 업데이트해야 합니다.
+각 쌍은 루트 경로 쪽이 "원래 기본 언어"(기존 링크/북마크 보존 목적)이고, 반대 언어는 자기 언어 이름의 하위 폴더(`/ko/`, `/en/`)에 있습니다. 두 페이지는 서로 다른 정적 파일일 뿐 상태를 공유하지 않습니다.
 
-`ongo-course.html`도 동일한 `data-en`/`data-ko` 패턴과 자체 `setLang(lang)` 함수를 가진 독립적인 이중 언어 페이지입니다(기본값은 한국어). `index.html`과 상태를 공유하지 않으므로, `index.html`의 "Online Course" 버튼은 현재 언어를 `ongo-course.html?lang=en|ko` 쿼리 파라미터로 전달하고, `ongo-course.html`은 로드 시 이 파라미터를 읽어 `setLang()`을 호출해 언어를 맞춥니다. `ongo-course.html`에 새로 진입하는 링크를 추가할 때도 이 쿼리 파라미터 패턴을 유지하세요.
+**⚠️ 텍스트를 수정할 때 가장 중요한 점**: 이제 "원본 하나 고치면 양쪽에 반영"되는 구조가 아닙니다. 콘텐츠를 고치려면 **같은 내용을 담고 있는 짝 파일 두 곳을 모두 직접 찾아 고쳐야** 합니다(예: `index.html`의 서비스 설명을 고치면 `ko/index.html`의 대응 문단도 번역해서 고쳐야 함). 한쪽만 고치면 두 언어 버전이 어긋납니다.
+
+**경로 규칙**: 루트에 있는 `index.html`/`ongo-course.html`은 기존처럼 상대경로(`css/style.css`, `images/...`, `docs/...`)를 씁니다. 반면 하위 폴더에 있는 `ko/index.html`, `en/ongo-course.html`은 한 단계 더 깊은 위치이므로 **모든 자산 경로가 절대경로**(`/css/style.css`, `/images/...`, `/docs/...`)로 되어 있습니다. 새 자산을 추가하거나 경로를 옮길 때 이 규칙을 지켜야 합니다.
+
+**언어 전환 링크**: 각 파일의 nav(`.nav-lang` 또는 강좌 페이지 상단 언어 토글)에는 버튼이 아니라 실제 `<a href="...">` 링크(현재 보고 있는 언어는 `<span class="lang-btn active">`로 비활성 표시)로 상대 언어 파일을 가리킵니다. 크롤러도 따라갈 수 있는 진짜 링크여야 하므로 JS `onclick`으로 되돌리지 마세요.
+
+**교차 링크(4개 파일 모두 언어에 맞게 고정되어 있음)**:
+- `index.html`의 "NVC Education Program Proposal" 버튼 → `docs/NVC-Education-Program-Proposal-Eng.pdf` / `ko/index.html`은 `/docs/...-Kor.pdf`
+- `index.html`의 "Online Course" 버튼 → `/en/ongo-course.html` / `ko/index.html`은 `/ongo-course.html`
+- Foundations 섹션의 "Libro ONGO 2.0" 링크도 동일한 규칙
+
+**`<head>` 메타데이터**: 4개 파일 모두 각자 언어에 맞는 `<title>`, `meta description`, Open Graph/Twitter 태그, 그리고 서로를 가리키는 `hreflang` 3종(`en`, `ko`, `x-default`)을 갖고 있습니다. `index.html`/`ko/index.html`에는 `Person` + `FAQPage` JSON-LD가 언어별로 각각 번역되어 들어있습니다(`#services`, `#faq` 텍스트를 고칠 때 두 파일의 JSON-LD 4곳 — EN 본문, EN JSON-LD, KO 본문, KO JSON-LD — 모두 갱신 필요).
+
+`#faq` 섹션은 네이티브 `<details>/<summary>` 아코디언(JS 불필요)이며, 질문은 첫 문장에서 바로 답하는 형식(AEO)을 유지합니다.
 
 ## 문의 폼
 
-`index.html` 인라인 스크립트에서 Formspree(`action="https://formspree.io/f/xvzdvlrj"`)로 AJAX fetch 전송합니다. 폼 관련 변경 시 백엔드 작업은 불필요하며, `action` 속성의 Formspree 엔드포인트만 중요합니다.
+`index.html`/`ko/index.html` 각각의 인라인 스크립트에서 Formspree(`action="https://formspree.io/f/xvzdvlrj"`)로 AJAX fetch 전송합니다. 두 파일 모두 같은 Formspree 엔드포인트를 쓰지만, 제출 중/완료/에러 버튼 문구는 언어별로 하드코딩되어 있습니다(과거처럼 `currentLang` 변수로 분기하지 않음). 문구를 고칠 때 두 파일 모두 확인하세요. `ongo-course.html`/`en/ongo-course.html`의 수강신청 폼도 동일한 패턴(별도 Formspree 엔드포인트 `mlgaozyb`)입니다.
 
 ## 디자인 시스템
 
@@ -54,7 +71,7 @@ CSS 변수는 `css/style.css`의 `:root`에 정의되어 있습니다. 주요 �
 | `--font-serif` | Cormorant Garamond — 제목, 인용구, 대형 표시 텍스트 |
 | `--font-sans` | Lato + Noto Sans KR — 본문, 레이블, 내비게이션 |
 
-`ongo-course.html`은 인라인으로 별도 색상 팔레트(`--sage`, `--gold`, `--charcoal` 등)를 정의하며, `style.css`와 값을 공유하지 않습니다.
+`ongo-course.html`과 `en/ongo-course.html`은 (각자 자신의 `<style>` 블록에) 인라인으로 별도 색상 팔레트(`--sage`, `--gold`, `--charcoal` 등)를 정의하며, `style.css`와 값을 공유하지 않습니다. 두 파일은 완전히 독립된 `<style>` 블록을 각각 갖고 있으므로, 디자인(색상·간격·컴포넌트 CSS)을 바꿀 때는 두 파일 모두 수정해야 합니다.
 
 ## Biography 섹션 (수직 타임라인)
 

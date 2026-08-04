@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://ginakim.org/</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ginakim.org/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ginakim.org/ko/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ginakim.org/" />
+  </url>
+  <url>
+    <loc>https://ginakim.org/ko/</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ginakim.org/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ginakim.org/ko/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ginakim.org/" />
+  </url>
+  <url>
+    <loc>https://ginakim.org/ongo-course.html</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ginakim.org/ongo-course.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ginakim.org/en/ongo-course.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ginakim.org/ongo-course.html" />
+  </url>
+  <url>
+    <loc>https://ginakim.org/en/ongo-course.html</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ginakim.org/ongo-course.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ginakim.org/en/ongo-course.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ginakim.org/ongo-course.html" />
+  </url>
+</urlset>
