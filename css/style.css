@@ -186,9 +186,10 @@ nav.scrolled {
 }
 
 .hero-cta-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 28px;
   align-self: flex-start;
 }
 
@@ -198,8 +199,9 @@ nav.scrolled {
   align-items: center;
   justify-content: center;
   text-align: center;
-  aspect-ratio: 1 / 1;
-  width: 100%;
+  flex: 0 0 auto;
+  width: 190px;
+  height: 190px;
   padding: 16px;
   border: 1px solid var(--accent);
   border-radius: 20px;
@@ -223,8 +225,9 @@ nav.scrolled {
   justify-content: center;
   text-align: center;
   gap: 8px;
-  aspect-ratio: 1 / 1;
-  width: 100%;
+  flex: 0 0 auto;
+  width: 190px;
+  height: 190px;
   padding: 16px;
   background: var(--accent);
   border: none;
