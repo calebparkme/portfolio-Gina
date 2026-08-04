@@ -185,17 +185,30 @@ nav.scrolled {
   background: var(--accent);
 }
 
+.hero-cta-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-self: flex-start;
+}
+
 .hero-cta {
-  display: inline-block;
-  padding: 14px 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  padding: 16px;
   border: 1px solid var(--accent);
+  border-radius: 20px;
   color: var(--accent);
   font-size: 0.78rem;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   text-decoration: none;
   transition: all 0.3s;
-  align-self: flex-start;
 }
 
 .hero-cta:hover {
@@ -204,16 +217,20 @@ nav.scrolled {
 }
 
 .ongo-btn {
-  display: inline-flex;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 16px;
-  margin-top: 32px;
-  padding: 16px 24px;
+  justify-content: center;
+  text-align: center;
+  gap: 8px;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  padding: 16px;
   background: var(--accent);
   border: none;
+  border-radius: 20px;
   text-decoration: none;
   transition: all 0.3s;
-  align-self: flex-start;
   box-shadow: 0 4px 20px rgba(122, 158, 130, 0.35);
 }
 
@@ -233,7 +250,6 @@ nav.scrolled {
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.75);
   display: block;
-  margin-bottom: 2px;
 }
 
 .ongo-btn-title {
