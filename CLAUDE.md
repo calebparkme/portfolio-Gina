@@ -35,7 +35,7 @@ npx serve .
 
 `index.html` 하단 인라인 `<script>`의 `setLang(lang)` 함수가 `[data-en]` 요소를 순회하며 `innerHTML`을 선택한 언어 속성값으로 교체합니다. 텍스트를 수정할 때는 **`data-en`과 `data-ko` 모두 수정**해야 하며, 태그 내부의 기본 텍스트(페이지 로드 시 영어로 표시됨)도 함께 업데이트해야 합니다.
 
-`ongo-course.html`은 한국어 전용이며 언어 전환 기능이 없습니다.
+`ongo-course.html`도 동일한 `data-en`/`data-ko` 패턴과 자체 `setLang(lang)` 함수를 가진 독립적인 이중 언어 페이지입니다(기본값은 한국어). `index.html`과 상태를 공유하지 않으므로, `index.html`의 "Online Course" 버튼은 현재 언어를 `ongo-course.html?lang=en|ko` 쿼리 파라미터로 전달하고, `ongo-course.html`은 로드 시 이 파라미터를 읽어 `setLang()`을 호출해 언어를 맞춥니다. `ongo-course.html`에 새로 진입하는 링크를 추가할 때도 이 쿼리 파라미터 패턴을 유지하세요.
 
 ## 문의 폼
 

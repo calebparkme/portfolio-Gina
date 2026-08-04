@@ -1038,6 +1038,13 @@
       if (text) el.innerHTML = text;
     });
   }
+
+  // Respect the language passed from the main site (?lang=en/ko), e.g. via the
+  // "Online Course" button on index.html, so this page opens in the same language.
+  (function applyLangFromQuery() {
+    const requested = new URLSearchParams(location.search).get('lang');
+    if (requested === 'en' || requested === 'ko') setLang(requested);
+  })();
 </script>
 </body>
 </html>
